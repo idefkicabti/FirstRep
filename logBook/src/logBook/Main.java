@@ -1,12 +1,10 @@
-package logBook;
+package logbook;
 
 import java.util.Scanner;
 import java.util.ArrayList;
 
 public class Main {
-	static final int MAX_BORROWERS = 100;
 	static ArrayList<Borrower> borrowers = new ArrayList<>();
-	static int numBorrowers = 0;
 
 	static String adminUsername = "admin";
 	static String adminPassword = "123";
@@ -35,51 +33,44 @@ public class Main {
 						int adminChoice = in.nextInt();
 						in.nextLine();
 						if (adminChoice == 1) {
-							if (numBorrowers < MAX_BORROWERS) {
-								System.out.print("Enter date: ");
-								String date = in.nextLine();
-								System.out.print("Enter time: ");
-								String time = in.nextLine();
-								System.out.print("Enter item: ");
-								String item = in.nextLine();
-								System.out.print("Enter quantity: ");
-								int quantity = in.nextInt();
-								in.nextLine();
-								System.out.print("Enter grade level: ");
-								String gradeLevel = in.nextLine();
-								System.out.print("Enter section: ");
-								String section = in.nextLine();
-								System.out.print("Enter name: ");
-								String name = in.nextLine();
-								borrowers[numBorrowers] = new Borrower(date, time, item, quantity, gradeLevel,section, name);
-								numBorrowers++;
-								System.out.println("Borrower added successfully!");
-							} 
-							else {
-								System.out.println("Error: Maximum number of borrowers reached!");
-							}
+							System.out.print("Enter date: ");
+							String date = in.nextLine();
+							System.out.print("Enter time: ");
+							String time = in.nextLine();
+							System.out.print("Enter item: ");
+							String item = in.nextLine();
+							System.out.print("Enter quantity: ");
+							String quantity = in.nextLine();
+							in.nextLine();
+							System.out.print("Enter grade level: ");
+							String gradeLevel = in.nextLine();
+							System.out.print("Enter section: ");
+							String section = in.nextLine();
+							System.out.print("Enter name: ");
+							String name = in.nextLine();
+							borrowers.add(new Borrower(date, time, item, quantity, gradeLevel,section, name));
+							System.out.println("Borrower added successfully!");
 						} 
 						else if (adminChoice == 2) {
-							if (numBorrowers == 0) {
+							if (borrowers.size() == 0) { 
 								System.out.println("There is no borrowers for today, try anohter option");
 							} 
 							else { 
-								for (int i = 0; i < numBorrowers; i++) {
-									System.out.println(borrowers[i]);
+								for (int i = 0; i < borrowers.size(); i++) {
+									System.out.println(borrowers.get(i));
 								}
 							} 
 						}
 						else if (adminChoice == 3) {
-							if (numBorrowers == 0) {
+							if (borrowers.size() == 0) {
 								System.out.println("Just to remind you, there is no borrowers yet");
-							} 
-							else { 
+							} else { 
 								System.out.print("Enter name to search: ");
 								String nameToSearch = in.nextLine();
 								boolean borrowerFound = false;
-								for (int i = 0; i < numBorrowers; i++) {
-									if (borrowers[i].getName().equals(nameToSearch)) {
-										System.out.println(borrowers[i]);
+								for (int i = 0; i < borrowers.size(); i++) {
+									if (borrowers.get(i).getName().equals(nameToSearch)) {
+										System.out.println(borrowers.get(i));
 										borrowerFound = true;
 									}
 								}
@@ -92,12 +83,9 @@ public class Main {
 							System.out.print("Enter name to delete: ");
 							String nameToDelete = in.nextLine();
 							boolean borrowerDeleted = false;
-							for (int i = 0; i < numBorrowers; i++) {
-								if (borrowers[i].getName().equals(nameToDelete)) {
-									for (int j = i; j < numBorrowers - 1; j++) {
-										borrowers[j] = borrowers[j + 1];
-									}
-									numBorrowers--;
+							for (int i = 0; i < borrowers.size(); i++) {
+								if (borrowers.get(i).getName().equals(nameToDelete)) {
+									borrowers.remove(i);
 									borrowerDeleted = true;
 									break;
 								}
