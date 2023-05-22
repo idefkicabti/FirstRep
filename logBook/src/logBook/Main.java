@@ -50,8 +50,7 @@ public class Main {
 								String section = in.nextLine();
 								System.out.print("Enter name: ");
 								String name = in.nextLine();
-								borrowers[numBorrowers] = new Borrower(date, time, item, quantity, gradeLevel,
-										section, name);
+								borrowers[numBorrowers] = new Borrower(date, time, item, quantity, gradeLevel,section, name);
 								numBorrowers++;
 								System.out.println("Borrower added successfully!");
 							} 
@@ -60,30 +59,51 @@ public class Main {
 							}
 						} 
 						else if (adminChoice == 2) {
-							for (int i = 0; i < numBorrowers; i++) {
-								System.out.println(borrowers[i]);
-							}
-						} 
-						else if (adminChoice == 3) {
-							System.out.print("Enter name to search: ");
-							String nameToSearch = in.nextLine();
-							for (int i = 0; i < numBorrowers; i++) {
-								if (borrowers[i].getName().equals(nameToSearch)) {
+							if (numBorrowers == 0) {
+								System.out.println("There is no borrowers for today, try anohter option");
+							} 
+							else { 
+								for (int i = 0; i < numBorrowers; i++) {
 									System.out.println(borrowers[i]);
+								}
+							} 
+						}
+						else if (adminChoice == 3) {
+							if (numBorrowers == 0) {
+								System.out.println("Just to remind you, there is no borrowers yet");
+							} else { 
+								System.out.print("Enter name to search: ");
+								String nameToSearch = in.nextLine();
+								boolean borrowerFound = false;
+								for (int i = 0; i < numBorrowers; i++) {
+									if (borrowers[i].getName().equals(nameToSearch)) {
+										System.out.println(borrowers[i]);
+										borrowerFound = true;
+									}
+								}
+								if (!borrowerFound) {
+									System.out.println("The name of the borrower has not borrowed anything yet.");
 								}
 							}
 						} 
 						else if (adminChoice == 4) {
 							System.out.print("Enter name to delete: ");
 							String nameToDelete = in.nextLine();
+							boolean borrowerDeleted = false;
 							for (int i = 0; i < numBorrowers; i++) {
 								if (borrowers[i].getName().equals(nameToDelete)) {
 									for (int j = i; j < numBorrowers - 1; j++) {
 										borrowers[j] = borrowers[j + 1];
 									}
 									numBorrowers--;
+									borrowerDeleted = true;
 									break;
 								}
+							}
+							if (borrowerDeleted) {
+								System.out.println("Borrower deleted successfully!");
+							} else {
+								System.out.println("Borrower not found.");
 							}
 						} 
 						else if (adminChoice == 5) {
