@@ -1,10 +1,11 @@
 package logBook;
 
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Main {
 	static final int MAX_BORROWERS = 100;
-	static Borrower[] borrowers = new Borrower[MAX_BORROWERS];
+	static ArrayList<Borrower> borrowers = new ArrayList<>();
 	static int numBorrowers = 0;
 
 	static String adminUsername = "admin";
