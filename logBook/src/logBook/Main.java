@@ -72,7 +72,8 @@ public class Main {
 						else if (adminChoice == 3) {
 							if (numBorrowers == 0) {
 								System.out.println("Just to remind you, there is no borrowers yet");
-							} else { 
+							} 
+							else { 
 								System.out.print("Enter name to search: ");
 								String nameToSearch = in.nextLine();
 								boolean borrowerFound = false;
@@ -103,7 +104,8 @@ public class Main {
 							}
 							if (borrowerDeleted) {
 								System.out.println("Borrower deleted successfully!");
-							} else {
+							} 
+							else {
 								System.out.println("Borrower not found.");
 							}
 						} 
