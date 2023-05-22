@@ -4,12 +4,12 @@ public class Borrower {
 	private String date;
 	private String time;
 	private String item;
-	private int quantity;
+	private String  quantity;
 	private String gradeLevel;
 	private String section;
 	private String name;
 
-	public Borrower(String date, String time, String item, int quantity, String gradeLevel, String section, String name) {
+	public Borrower(String date, String time, String item, String quantity, String gradeLevel, String section, String name) {
 		this.date = date;
 		this.time = time;
 		this.item = item;
@@ -42,11 +42,11 @@ public class Borrower {
 		this.item = item;
 	}
 
-	public int getQuantity() {
+	public String getQuantity() {
 		return quantity;
 	}
 
-	public void setQuantity(int quantity) {
+	public void setQuantity(String quantity) {
 		this.quantity = quantity;
 	}
 
